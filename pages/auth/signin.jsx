@@ -34,7 +34,6 @@ const providers = [
 
 const Signin = () => {
 	const {  session, status } = useSession();
-	console.log("status==",status);
 	const { push } = useRouter()
 	const [email, setEmail] = useState('')
 
