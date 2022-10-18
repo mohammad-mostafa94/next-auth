@@ -6,17 +6,15 @@ import { useSession, signIn, signOut } from 'next-auth/react'
 const Home = () => {
 	const { data: session } = useSession()
 
+	console.log("session ==",session);
 	const { push, asPath } = useRouter()
-	// const { push} = useRouter()
 
 	const handleSignOut = async () => {
-		const data = await signOut({ redirect: false, callbackUrl: '/some' })
-		
+		const data = await signOut({ redirect: false, callbackUrl: '/singnedout' })
 		push(data.url)
 	}
 
 	const handleSignIn = () => push(`/auth/signin?callbackUrl=${asPath}`)
-	// console.log("session ==",session);
 	return (
 		<Grid placeItems='center' gridRowGap='1rem'>
 			{session ? (

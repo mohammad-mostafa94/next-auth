@@ -2,6 +2,7 @@ import { SessionProvider } from 'next-auth/react'
 import { ChakraProvider, Grid } from '@chakra-ui/react'
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
+	
 	return (
 		<SessionProvider session={session}>
 			<ChakraProvider>

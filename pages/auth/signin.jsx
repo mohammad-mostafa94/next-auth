@@ -3,13 +3,9 @@ import { useRouter } from 'next/router'
 import {
 	Box,
 	Button,
-	Grid,
 	Heading,
 	VStack,
-	FormControl,
 	FormLabel,
-	FormErrorMessage,
-	FormHelperText,
 	Input,
 	chakra,
 } from '@chakra-ui/react'
@@ -33,20 +29,10 @@ const providers = [
 ]
 
 const Signin = () => {
-	const {  session, status } = useSession();
-	const { push } = useRouter()
-	const [email, setEmail] = useState('')
-
-	console.log("session-1",session);
+	const {data:session, status } = useSession();
+	const { push } = useRouter();
+	const [email, setEmail] = useState('');
 	if (status === 'loading') return <Heading>Checking Authentication...</Heading>
-
-	if (session) {
-		setTimeout(() => {
-			push('/')
-		}, 5000)
-
-		return <Heading>you are already signed in</Heading>
-	}
 
 	const handleOAuthSignIn = (provider) => () => signIn(provider)
 
@@ -56,6 +42,14 @@ const Signin = () => {
 		if (!email) return false
 
 		signIn('email', { email, redirect: false })
+	}
+
+	if (session) {
+		setTimeout(() => {
+			push('/')
+		}, 5000)
+
+		return <Heading>you are already signed in</Heading>
 	}
 
 	return (
